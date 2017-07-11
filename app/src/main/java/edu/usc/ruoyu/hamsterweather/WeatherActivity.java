@@ -1,5 +1,6 @@
 package edu.usc.ruoyu.hamsterweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -23,6 +24,7 @@ import java.io.IOException;
 
 import edu.usc.ruoyu.hamsterweather.gson.Forecast;
 import edu.usc.ruoyu.hamsterweather.gson.Weather;
+import edu.usc.ruoyu.hamsterweather.service.AutoUpdateService;
 import edu.usc.ruoyu.hamsterweather.util.HttpUtil;
 import edu.usc.ruoyu.hamsterweather.util.Utility;
 import okhttp3.Call;
@@ -205,6 +207,8 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     private void loadBingPic() {
