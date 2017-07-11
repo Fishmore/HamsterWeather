@@ -2,6 +2,8 @@ package edu.usc.ruoyu.hamsterweather.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import edu.usc.ruoyu.hamsterweather.db.City;
 import edu.usc.ruoyu.hamsterweather.db.County;
 import edu.usc.ruoyu.hamsterweather.db.Province;
+import edu.usc.ruoyu.hamsterweather.gson.Weather;
 
 /**
  * Created by Ruoyu on 2017/7/11.
@@ -73,5 +76,17 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
