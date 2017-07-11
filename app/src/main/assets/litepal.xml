@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="hamster_weather" />
+
+    <version value="1" />
+
+    <list>
+        <mapping class="edu.usc.ruoyu.hamsterweather.android.db.Province" />
+        <mapping class="edu.usc.ruoyu.hamsterweather.android.db.City" />
+        <mapping class="edu.usc.ruoyu.hamsterweather.android.db.County" />
+    </list>
+
+</litepal>
